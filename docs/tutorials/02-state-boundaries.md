@@ -14,7 +14,7 @@ kernelspec:
 CONDACT turns a continuous angle into a small number of states. Where you place the boundaries between states decides what counts as a transition, so it is the most important choice you make. This tutorial shows how to make it and what happens when it goes wrong.
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide-input, remove-stdout]
 
 import os
 import warnings
