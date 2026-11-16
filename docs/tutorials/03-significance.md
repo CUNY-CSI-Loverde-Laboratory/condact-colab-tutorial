@@ -90,7 +90,24 @@ results[["Y (changes first)", "X (responds)", "Conditional_Activity", "p_value",
 Only two pairs were tested. A pair is tested only if both residues have at least 11 recorded transitions (`min_transitions`) and the conditional activity is at least `CA_cutoff`. The diagonal (dynamical memory) is not tested.
 :::
 
-## 3.4 How many shifts?
+## 3.4 Keep only the significant couplings
+
+After the FDR correction, only the conditional activity values that are statistically significant should be used for downstream analysis and for interpreting the results.
+
+Keep the entries with a q-value of 0.05 or less and set all the others to `NaN`. This removes the pairs that failed the correction (q > 0.05) and the entries that were not tested, which have a `NaN` q-value. The diagonal (dynamical memory) is not tested, so it is removed as well.
+
+```{code-cell} ipython3
+CA = np.array(conditional_activity_list, dtype=float)
+_, residue_names, residue_type = study.residues()
+labels = [f"{name} {res.resid}" for name, res in zip(residue_names, residue_type)]
+
+CA_filtered = np.where(qvals <= 0.05, CA, np.nan)
+pd.DataFrame(CA_filtered, index=labels, columns=labels).round(2)
+```
+
+Only ASP 3 → GLN 1 remains. {doc}`04-domains-routes` uses this filtered matrix.
+
+## 3.5 How many shifts?
 
 The smallest p-value the test can report is 1 / (`n_perm` + 1), and the estimate becomes less noisy as `n_perm` grows. Here the test is repeated with five different random seeds, for a small and a large number of shifts.
 
@@ -115,7 +132,7 @@ With 200 shifts the p-value changes noticeably from one seed to the next; with 5
 Use a few hundred or a few thousand shifts while exploring, and 10,000 or more for results you intend to publish. The time taken grows in proportion to `n_perm` and to the number of pairs tested.
 :::
 
-## 3.5 Options
+## 3.6 Options
 
 | Option | Default | Meaning |
 |---|---|---|
