@@ -107,7 +107,7 @@ labels = [f"{name} {res.resid}" for name, res in zip(residue_names, residue_type
 ```
 
 :::{note}
-The lines saying that a residue "had statistically fewer transitions" are information, not errors. A residue must change state at least 10 times to be analysed. Here ASN 2 changed only 3 times, so every result that involves it is `NaN`.
+The lines saying that a residue "had statistically fewer transitions" are information, not errors. A residue must change state at least 10 times to be analysed. Here ASN 2 changed only 3 times, so every result that involves it is `NaN`. This is why real analyses need long simulations or a simulation with residues adopting multiple transitions.
 :::
 
 `mean_conditional_activity()` returns three things: the conditional activity matrix (as a list of lists), a dictionary of persistence times, and the matrix of exchange times. It also writes its results to the current folder:
