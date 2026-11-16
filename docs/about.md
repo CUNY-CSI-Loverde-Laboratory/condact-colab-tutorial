@@ -42,10 +42,12 @@ The measure is directional: `A[X][Y]` is in general not equal to `A[Y][X]`. In t
 - **Dynamically connected domains**: groups of mutually coupled residues, from the principal eigenvector of the matrix ({doc}`tutorials/04-domains-routes`).
 - **Communication routes**: chains of coupled residues that are also close in space ({doc}`tutorials/04-domains-routes`).
 
+Domains and routes are computed from the couplings that pass the false discovery rate correction only.
+
 ## Limitations
 
 :::{important}
-- **Long trajectories are required.** A residue needs at least 10 transitions to be analysed. Residues with fewer are reported as `NaN`.
+- **Enough transitions are required.** A residue needs at least 10 transitions to be analysed. Residues with fewer are reported as `NaN`. This means a long simulation, or a simulation in which the residues adopt multiple transitions.
 - **States are a coarse-graining.** Splitting a continuous angle into a few states can hide small conformational changes, and badly placed boundaries distort the result ({doc}`tutorials/02-state-boundaries`).
 - **Cost grows with the square of the number of residues**, because every pair is compared.
 :::
