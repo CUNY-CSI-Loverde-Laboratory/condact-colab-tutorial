@@ -2,7 +2,7 @@
 
 ## Most of my matrix is `NaN`. What went wrong?
 
-Probably nothing in the code. A residue is only analysed if it made at least 10 transitions, and every entry involving a residue with fewer is reported as `NaN`. Check the number of transitions per residue (see {doc}`tutorials/01-quickstart`). If the counts are low, you need a longer trajectory. If they are unexpectedly low or high, check your state boundaries ({doc}`tutorials/02-state-boundaries`).
+Probably nothing in the code. A residue is only analysed if it made at least 10 transitions, and every entry involving a residue with fewer is reported as `NaN`. Check the number of transitions per residue (see {doc}`tutorials/01-quickstart`). If the counts are low, you need a longer trajectory, or a simulation in which those residues adopt multiple transitions. If they are unexpectedly low or high, check your state boundaries ({doc}`tutorials/02-state-boundaries`).
 
 ## How long does my simulation need to be?
 
